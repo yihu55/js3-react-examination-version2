@@ -7,6 +7,7 @@ import Navigation from "./components/Navigation";
 import { RootURL } from "./global/constants";
 import CustomerDetailPage from "./pages/CustomerDetailPage";
 import MyAccountInfo from "./components/MyAccountInfo";
+import UserCreatePage from "./pages/UserCreatePage";
 
 const CustomerListContext = createContext({});
 
@@ -44,19 +45,30 @@ function App() {
       },
     })
       .then((res) => res.json())
-      .then((data) => setMyData(data));
+      .then((data) => {
+        console.log(data);
+        setMyData(data);
+      });
   }
   return (
     <CustomerListContext.Provider
-      value={{ customerList, setCustomerList, fetchData, myData }}
+      value={{
+        customerList,
+        setCustomerList,
+        fetchData,
+        getUserInfo,
+        myData,
+        setMyData,
+      }}
     >
       <Navigation />
-      <MyAccountInfo />
+      {/* <MyAccountInfo /> */}
 
       <Routes>
-        <Route path="/home" element={<HomePage />} />
+        <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/customer/:index" element={<CustomerDetailPage />} />
+        <Route path="/user/create" element={<UserCreatePage />} />
       </Routes>
     </CustomerListContext.Provider>
   );

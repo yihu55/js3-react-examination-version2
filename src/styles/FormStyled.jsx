@@ -8,7 +8,7 @@ export const FormStyled=styled.form`
   padding-top:100px;
   width:300px;
  
-  input,button{
+  input,button,p{
   padding:5px;
   margin:${props=>props.margin};
   outline:none;

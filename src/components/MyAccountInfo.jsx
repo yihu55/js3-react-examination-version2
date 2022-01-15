@@ -1,39 +1,33 @@
-import React,{useState,useEffect} from 'react'
+import React,{useEffect} from 'react'
 import { AsideStyled } from '../styles/AsideStyled'
 import { useContext } from 'react'
 import { CustomerListContext } from '../App'
+import { Navigate, useNavigate } from 'react-router-dom'
+
 
 
 export default function MyAccountInfo() {
 
-    const {myData}=useContext(CustomerListContext)
-//     const [myData,setMyData]=useState(null)
-//     useEffect(()=>{
-//        getUserInfo()
-//     },[])//myData in [] will get api infinitly
-
-//     function getUserInfo(){
-//     const token=localStorage.getItem("examination1")
-//     fetch("https://frebi.willandskill.eu/api/v1/me",{
-       
-//         method:"GET",
-//         headers:{
-//             "Content-Type":"application/json",
-//             "Authorization":`Bearer ${token}`
-//         }
-//     })
-//     .then(res=>res.json())
-//     .then(data=>setMyData(data))
-//    }
-
+const {getUserInfo,myData}=useContext(CustomerListContext)
+const navigate=useNavigate()
+useEffect(()=>{
+     getUserInfo()
+    
+},[])
+function logOut(){
+    localStorage.clear()
+    navigate("/login")
+}
+console.log(myData)
     return (
        
         <AsideStyled>
-             {myData&&
+           {myData.email?
            <>
            <p>{myData.firstName} {myData.lastName} is inlogged</p>
-           <p>email: {myData.email}</p>
-           </>}
+           <p>email: {myData.email}</p><button onClick={logOut}>log out</button>
+           </>:("")}
+           
         </AsideStyled>
         
     )

@@ -15,13 +15,12 @@ export default function CustomerList() {
     return (
         <ListStyled>
            <Heading heading="Customer List"/>
-           <button onClick={fetchData}>refresh list</button>
+         
            {customerList&&customerList.map((customer,index)=>{
                const {name,id}=customer
                return <div key={id}>
                    <LinkStyled to={`/customer/${index}`} fontSize="true" color={Colors.purple}>
                        <h4>name:{name}</h4>
-                       {/* <p>id:{id}</p> */}
                     </LinkStyled>
                      </div>
 

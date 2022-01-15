@@ -7,7 +7,7 @@ export default function Navigation() {
     
         <NavbarStyled>
             <ul>
-            <li><Link to="/home">home</Link></li>
+            <li><Link to="/">home</Link></li>
             <li><Link to="/login">Login</Link></li>
             </ul>
       </NavbarStyled>

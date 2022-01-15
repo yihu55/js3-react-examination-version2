@@ -6,7 +6,7 @@ import { ButtonStyled } from '../styles/ButtonStyled'
 import { FormStyled } from '../styles/FormStyled'
 
 export default function CustomerDetail() {
-    const {customerList}=useContext(CustomerListContext)
+    const {customerList,fetchData}=useContext(CustomerListContext)
     const params=useParams()
     const index=params.index
     const customer=customerList[index]
@@ -26,8 +26,10 @@ export default function CustomerDetail() {
           headers: headers,
           method: "DELETE"
         })
-        
-        navigate("/home")
+        .then(res=>{
+          fetchData()})
+
+          navigate("/home")
 
     }
     return (
